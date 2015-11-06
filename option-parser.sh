@@ -25,7 +25,9 @@ optParse() {
 		lineNo=$((lineNo + 1))
 
 		# echo the line number before any output
-		echo -n "$lineNo: "
+		echo -n "$lineNo	"
+
+		echo -n "$line	"
 
 		# Try and match the line against our REGEX
 		[[ $line =~ $regexOption ]]
@@ -40,7 +42,7 @@ optParse() {
 		value="${BASH_REMATCH[2]}"
 
 		# Echo the key/value pair
-		echo "$key = $value"
+		echo "$key	$value	"
 
 	done < "$OPT_FILE"
 }
