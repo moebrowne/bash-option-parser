@@ -35,7 +35,12 @@ optParse() {
 			continue
 		fi
 
-		echo "${BASH_REMATCH[@]}"
+		# Get the key/value pairs
+		key="${BASH_REMATCH[1]}"
+		value="${BASH_REMATCH[2]}"
+
+		# Echo the key/value pair
+		echo "$key = $value"
 
 	done < "$OPT_FILE"
 }
