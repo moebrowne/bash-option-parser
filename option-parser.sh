@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the regex to match an option
-regexOption='^([^\s=]) ?= ?(.*)$'
+regexOption='^([^=]+)=(.*)$'
 
 # The file to load the options from
 OPT_FILE="$HOME/.bash_opt"
@@ -14,8 +14,10 @@ declare -A opta
 
 
 optParse() {
-	options=$(grep '$[^#]' "$OPT_FILE");
-	echo "$options"
+	while read line; do
+		[[ $line =~ $regexOption ]]
+		echo "${BASH_REMATCH[@]}"
+	done < "$OPT_FILE"
 }
 
 
