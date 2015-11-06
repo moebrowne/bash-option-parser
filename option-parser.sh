@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Define the regex to match an option
+regexOption='^([^\s=]) ?= ?(.*)$'
+
 # The file to load the options from
 OPT_FILE="~/.bash_opt"
 
