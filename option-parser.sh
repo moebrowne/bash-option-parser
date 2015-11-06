@@ -4,7 +4,7 @@
 regexOption='^([^\s=]) ?= ?(.*)$'
 
 # The file to load the options from
-OPT_FILE="~/.bash_opt"
+OPT_FILE="$HOME/.bash_opt"
 
 # The character(s) that signify the start of a comment
 OPT_COMMENT="#"
