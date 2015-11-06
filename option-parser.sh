@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The file to load the options from
+OPT_FILE="~/.bash_opt"
+
 # Initialise some variables
 declare -A opta
 
