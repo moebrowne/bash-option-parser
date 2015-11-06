@@ -50,5 +50,5 @@ optParse() {
 
 # If we are accessing this script directly run the argument parser, useful for testing
 if [ "$0" == "$BASH_SOURCE" ]; then
-	optParse
+	optParse | column -t -s $'\t'
 fi
