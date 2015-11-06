@@ -7,7 +7,7 @@ OPT_FILE="$HOME/.bash_opt"
 OPT_COMMENT="#"
 
 # Define the regex to match an option
-regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+) ?= ?(.*)$"
+regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*)$"
 
 # Initialise some variables
 declare -A opta
