@@ -30,6 +30,11 @@ optParse() {
 		# Try and match the line against our REGEX
 		[[ $line =~ $regexOption ]]
 
+		if [[ ${BASH_REMATCH[@]} == '' ]]; then
+			echo "-- NO MATCH --"
+			continue
+		fi
+
 		echo "${BASH_REMATCH[@]}"
 
 	done < "$OPT_FILE"
