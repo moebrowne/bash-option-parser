@@ -14,7 +14,8 @@ declare -A opta
 
 
 optParse() {
-	echo "Hello World!"
+	options=$(grep '$[^#]' "$OPT_FILE");
+	echo "$options"
 }
 
 
