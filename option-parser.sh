@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Define the regex to match an option
-regexOption='^([^=]+)=(.*)$'
-
 # The file to load the options from
 OPT_FILE="$HOME/.bash_opt"
 
 # The character(s) that signify the start of a comment
 OPT_COMMENT="#"
+
+# Define the regex to match an option
+regexOption="^([^=$OPT_COMMENT]+)=(.*)$"
 
 # Initialise some variables
 declare -A opta
