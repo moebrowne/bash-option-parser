@@ -14,9 +14,13 @@ declare -A opta
 
 
 optParse() {
+	# Loop over every line of the option file
 	while read line; do
+
+		# Try and match the line against our REGEX
 		[[ $line =~ $regexOption ]]
 		echo "${BASH_REMATCH[@]}"
+
 	done < "$OPT_FILE"
 }
 
