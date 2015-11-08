@@ -6,6 +6,9 @@ OPT_FILE="$HOME/.bash_opt"
 # The character(s) that signify the start of a comment
 OPT_COMMENT="#"
 
+# Persist any changes of the options back to the option file
+OPT_PERSIST_CHANGES=true
+
 # Debug mode
 OPT_DEBUG=true
 
@@ -97,9 +100,9 @@ optWrite() {
 		return
 	fi
 
-	# Check we can write to the option file
+	# Check we can write to the option file (if we want to)
 	optFileWriteable
-	if [ "$?" == 0 ]; then
+	if [ "$?" == 0 ] && [ "$OPT_PERSIST_CHANGES" == true ]; then
 		echo "ERROR: Option file not writeable!";
 		exit 1;
 	fi
