@@ -72,8 +72,6 @@ optWrite() {
 	# Check if this is a new option
 	if [ ! -z ${optLines["$1"]+abc} ]; then
 
-	echo "a"
-
 		# Get the line number of this option
 		local lineNo=${optLines["$1"]}
 
