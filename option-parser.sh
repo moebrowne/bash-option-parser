@@ -81,14 +81,13 @@ optWrite() {
 		# Write the new option
 		sed -i "${lineNo}i$1=$2" "$OPT_FILE"
 
-		# Update the array
-		opts["$1"]="$2"
-
 	else
 		# Add the new option to the end of the option file
 		echo "$1=$2" >> "$OPT_FILE"
 	fi
 
+	# Update the array
+	opts["$1"]="$2"
 }
 
 # If we are accessing this script directly run the argument parser, useful for testing
