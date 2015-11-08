@@ -83,6 +83,10 @@ optWrite() {
 
 		# Update the array
 		opts["$1"]="$2"
+
+		# Nothing more to do
+		return;
+
 	fi
 
 }
