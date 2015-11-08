@@ -57,6 +57,9 @@ optParse() {
 	done < "$OPT_FILE"
 }
 
+optWrite() {
+
+}
 
 # If we are accessing this script directly run the argument parser, useful for testing
 if [ "$0" == "$BASH_SOURCE" ]; then
