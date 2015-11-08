@@ -69,6 +69,11 @@ optWrite() {
 	# The new value we want to give the option
 	local value="$2"
 
+	# Check we are actually being asked to change the value
+	if [ "$2" == "$(optValue "$1")" ]; then
+		return
+	fi
+
 	# Check if this is a new option
 	if [ ! -z ${optLines["$1"]+abc} ]; then
 
