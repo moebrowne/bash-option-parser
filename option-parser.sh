@@ -82,6 +82,13 @@ optWrite() {
 		return
 	fi
 
+	# Check we can write to the option file
+	optFileWriteable
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file not writeable!";
+		exit 1;
+	fi
+
 	# Check if this is a new option
 	if [ ! -z ${optLines["$1"]+abc} ]; then
 
