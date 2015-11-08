@@ -16,6 +16,14 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 declare -A opts
 declare -A optLines
 
+optFileWriteable() {
+	if [ -w "$OPT_FILE" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
 optExists() {
 	if [ -z ${opts["$1"]+abc} ]; then
 		return 1
