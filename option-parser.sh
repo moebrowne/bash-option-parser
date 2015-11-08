@@ -63,6 +63,30 @@ optParse() {
 
 optWrite() {
 
+	# The key of the option we want to write to
+	local key="$1";
+
+	# The new value we want to give the option
+	local value="$2"
+
+	# Check if this is a new option
+	if [ ! -z ${optLines["$1"]+abc} ]; then
+
+	echo "a"
+
+		# Get the line number of this option
+		local lineNo=${optLines["$1"]}
+
+		# Remove the option
+		sed -i "${lineNo}d" "$OPT_FILE"
+
+		# Write the new option
+		sed -i "${lineNo}i$1=$2" "$OPT_FILE"
+
+		# Update the array
+		opts["$1"]="$2"
+	fi
+
 }
 
 # If we are accessing this script directly run the argument parser, useful for testing
