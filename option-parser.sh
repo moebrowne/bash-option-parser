@@ -15,6 +15,14 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 # Initialise some variables
 declare -A opts
 
+optExists() {
+	if [ -z ${opts["$1"]+abc} ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
 optParse() {
 
 	# Set the line counter to 0
