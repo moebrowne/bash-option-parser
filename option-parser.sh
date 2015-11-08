@@ -100,15 +100,15 @@ optWrite() {
 		return
 	fi
 
+	# Update the array
+	opts["$1"]="$2"
+
 	# Check we can write to the option file (if we want to)
 	optFileWriteable
-	if [ "$?" == 0 ] && [ "$OPT_PERSIST_CHANGES" == true ]; then
+	if [ "$?" == 0 ]; then
 		echo "ERROR: Option file not writeable!";
 		exit 1;
 	fi
-
-	# Update the array
-	opts["$1"]="$2"
 
 	# Check if this is a new option
 	if [ ! -z ${optLines["$1"]+abc} ]; then
