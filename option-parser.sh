@@ -52,5 +52,10 @@ optParse() {
 
 # If we are accessing this script directly run the argument parser, useful for testing
 if [ "$0" == "$BASH_SOURCE" ]; then
-	optParse | column -t -s $'\t'
+	optParse
+
+	for k in "${!opts[@]}"
+	do
+		echo "ARG: $k = ${opts[$k]}"
+	done
 fi
