@@ -6,6 +6,9 @@ OPT_FILE="$HOME/.bash_opt"
 # The character(s) that signify the start of a comment
 OPT_COMMENT="#"
 
+# Persist any changes of the options back to the option file
+OPT_PERSIST_CHANGES=true
+
 # Debug mode
 OPT_DEBUG=true
 
@@ -97,7 +100,15 @@ optWrite() {
 		return
 	fi
 
-	# Check we can write to the option file
+	# Update the array
+	opts["$1"]="$2"
+
+	# Check we want to persist changes to the option file
+	if [ "$OPT_PERSIST_CHANGES" != true ]; then
+		return
+	fi
+
+	# Check we can write to the option file (if we want to)
 	optFileWriteable
 	if [ "$?" == 0 ]; then
 		echo "ERROR: Option file not writeable!";
@@ -120,9 +131,6 @@ optWrite() {
 		# Add the new option to the end of the option file
 		echo "$1=$2" >> "$OPT_FILE"
 	fi
-
-	# Update the array
-	opts["$1"]="$2"
 }
 
 # If we are accessing this script directly run the argument parser, useful for testing
