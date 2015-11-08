@@ -48,6 +48,13 @@ optValue() {
 
 optParse() {
 
+	# Check we can read the option file
+	optFileReadable
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file not readable!";
+		exit 1;
+	fi
+
 	# Set the line counter to 0
 	lineNo=0
 
