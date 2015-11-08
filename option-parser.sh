@@ -16,6 +16,22 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 declare -A opts
 declare -A optLines
 
+optFileWriteable() {
+	if [ -w "$OPT_FILE" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
+optFileReadable() {
+	if [ -r "$OPT_FILE" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
 optExists() {
 	if [ -z ${opts["$1"]+abc} ]; then
 		return 1
@@ -31,6 +47,13 @@ optValue() {
 }
 
 optParse() {
+
+	# Check we can read the option file
+	optFileReadable
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file not readable!";
+		exit 1;
+	fi
 
 	# Set the line counter to 0
 	lineNo=0
@@ -72,6 +95,13 @@ optWrite() {
 	# Check we are actually being asked to change the value
 	if [ "$2" == "$(optValue "$1")" ]; then
 		return
+	fi
+
+	# Check we can write to the option file
+	optFileWriteable
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file not writeable!";
+		exit 1;
 	fi
 
 	# Check if this is a new option
