@@ -84,13 +84,10 @@ optWrite() {
 		# Update the array
 		opts["$1"]="$2"
 
-		# Nothing more to do
-		return;
-
+	else
+		# Add the new option to the end of the option file
+		echo "$1=$2" >> "$OPT_FILE"
 	fi
-
-	# Add the new option to the end of the option file
-	echo "$1=$2" >> "$OPT_FILE"
 
 }
 
