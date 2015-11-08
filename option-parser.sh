@@ -41,6 +41,8 @@ optParse() {
 		key="${BASH_REMATCH[1]}"
 		value="${BASH_REMATCH[2]}"
 
+		opts["$key"]="$value"
+
 		# Echo the key/value pair
 		echo "$key	$value	"
 
