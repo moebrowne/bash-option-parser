@@ -24,16 +24,10 @@ optParse() {
 		# Increment the line counter
 		lineNo=$((lineNo + 1))
 
-		# echo the line number before any output
-		echo -n "$lineNo	"
-
-		echo -n "$line	"
-
 		# Try and match the line against our REGEX
 		[[ $line =~ $regexOption ]]
 
 		if [[ ${BASH_REMATCH[@]} == '' ]]; then
-			echo "-- NO MATCH --"
 			continue
 		fi
 
@@ -42,9 +36,6 @@ optParse() {
 		value="${BASH_REMATCH[2]}"
 
 		opts["$key"]="$value"
-
-		# Echo the key/value pair
-		echo "$key	$value	"
 
 	done < "$OPT_FILE"
 }
