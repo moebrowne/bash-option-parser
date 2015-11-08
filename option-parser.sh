@@ -14,6 +14,7 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 
 # Initialise some variables
 declare -A opts
+declare -A optLines
 
 optExists() {
 	if [ -z ${opts["$1"]+abc} ]; then
@@ -24,7 +25,7 @@ optExists() {
 }
 
 optValue() {
-	if argExists "$1"; then
+	if optExists "$1"; then
 		echo "${opts["$1"]}"
 	fi
 }
@@ -54,9 +55,45 @@ optParse() {
 		# Add the value to the associative array
 		opts["$key"]="$value"
 
+		# Add the line number of this option to an associative array
+		optLines["$key"]="$lineNo"
+
 	done < "$OPT_FILE"
 }
 
+optWrite() {
+
+	# The key of the option we want to write to
+	local key="$1";
+
+	# The new value we want to give the option
+	local value="$2"
+
+	# Check we are actually being asked to change the value
+	if [ "$2" == "$(optValue "$1")" ]; then
+		return
+	fi
+
+	# Check if this is a new option
+	if [ ! -z ${optLines["$1"]+abc} ]; then
+
+		# Get the line number of this option
+		local lineNo=${optLines["$1"]}
+
+		# Remove the option
+		sed -i "${lineNo}d" "$OPT_FILE"
+
+		# Write the new option
+		sed -i "${lineNo}i$1=$2" "$OPT_FILE"
+
+	else
+		# Add the new option to the end of the option file
+		echo "$1=$2" >> "$OPT_FILE"
+	fi
+
+	# Update the array
+	opts["$1"]="$2"
+}
 
 # If we are accessing this script directly run the argument parser, useful for testing
 if [ "$0" == "$BASH_SOURCE" ]; then
