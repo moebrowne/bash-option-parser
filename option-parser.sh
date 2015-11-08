@@ -6,6 +6,9 @@ OPT_FILE="$HOME/.bash_opt"
 # The character(s) that signify the start of a comment
 OPT_COMMENT="#"
 
+# Debug mode
+OPT_DEBUG=true
+
 # Define the regex to match an option
 regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*)$"
 
@@ -45,7 +48,7 @@ optParse() {
 if [ "$0" == "$BASH_SOURCE" ]; then
 	optParse
 
-	for k in "${!opts[@]}"
+	[ "$OPT_DEBUG" == true ] && for k in "${!opts[@]}"
 	do
 		echo "OPT: $k = ${opts[$k]}"
 	done
