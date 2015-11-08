@@ -14,6 +14,7 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 
 # Initialise some variables
 declare -A opts
+declare -A optLines
 
 optExists() {
 	if [ -z ${opts["$1"]+abc} ]; then
@@ -53,6 +54,9 @@ optParse() {
 
 		# Add the value to the associative array
 		opts["$key"]="$value"
+
+		# Add the line number of this option to an associative array
+		optLines["$key"]="$lineNo"
 
 	done < "$OPT_FILE"
 }
