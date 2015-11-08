@@ -24,6 +24,14 @@ optFileWriteable() {
 	return 0
 }
 
+optFileReadable() {
+	if [ -r "$OPT_FILE" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
 optExists() {
 	if [ -z ${opts["$1"]+abc} ]; then
 		return 1
