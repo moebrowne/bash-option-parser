@@ -89,6 +89,9 @@ optWrite() {
 
 	fi
 
+	# Add the new option to the end of the option file
+	echo "$1=$2" >> "$OPT_FILE"
+
 }
 
 # If we are accessing this script directly run the argument parser, useful for testing
