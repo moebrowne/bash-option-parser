@@ -70,6 +70,13 @@ optValue() {
 
 optParse() {
 
+	# Check the option file exists
+	optFileExists
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file does not exist"
+		exit 1
+	fi
+
 	# Check we can read the option file
 	optFileReadable
 	if [ "$?" == 0 ]; then
@@ -125,6 +132,13 @@ optWrite() {
 	# Check we want to persist changes to the option file
 	if [ "$OPT_PERSIST_CHANGES" != true ]; then
 		return
+	fi
+
+	# Check the option file exists
+	optFileExists
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file does not exist"
+		exit 1
 	fi
 
 	# Check we can write to the option file (if we want to)
