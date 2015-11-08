@@ -23,6 +23,12 @@ optExists() {
 	fi
 }
 
+optValue() {
+	if argExists "$1"; then
+		echo "${opts["$1"]}"
+	fi
+}
+
 optParse() {
 
 	# Set the line counter to 0
