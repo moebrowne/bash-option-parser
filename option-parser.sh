@@ -103,6 +103,11 @@ optWrite() {
 	# Update the array
 	opts["$1"]="$2"
 
+	# Check we want to persist changes to the option file
+	if [ "$OPT_PERSIST_CHANGES" != true ]; then
+		return
+	fi
+
 	# Check we can write to the option file (if we want to)
 	optFileWriteable
 	if [ "$?" == 0 ]; then
