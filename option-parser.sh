@@ -9,6 +9,9 @@ OPT_COMMENT="#"
 # Persist any changes of the options back to the option file
 OPT_PERSIST_CHANGES=true
 
+# Create the option file if it doesn't exist
+OPT_FILE_CREATE_IF_MISSING=true
+
 # Debug mode
 OPT_DEBUG=true
 
@@ -18,6 +21,22 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 # Initialise some variables
 declare -A opts
 declare -A optLines
+
+optFileExists() {
+	# Check if the option file exists
+	if [ ! -e "$OPT_FILE" ]; then
+
+		# Check if we should create the file if its missing
+		if [ "$OPT_FILE_CREATE_IF_MISSING" == true ]; then
+			# Create the missing option file
+			touch "$OPT_FILE_CREATE_IF_MISSING"
+
+			return 1
+		fi
+		return 0
+	fi
+	return 1
+}
 
 optFileWriteable() {
 	if [ -w "$OPT_FILE" ]; then
@@ -50,6 +69,13 @@ optValue() {
 }
 
 optParse() {
+
+	# Check the option file exists
+	optFileExists
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file does not exist"
+		exit 1
+	fi
 
 	# Check we can read the option file
 	optFileReadable
@@ -106,6 +132,13 @@ optWrite() {
 	# Check we want to persist changes to the option file
 	if [ "$OPT_PERSIST_CHANGES" != true ]; then
 		return
+	fi
+
+	# Check the option file exists
+	optFileExists
+	if [ "$?" == 0 ]; then
+		echo "ERROR: Option file does not exist"
+		exit 1
 	fi
 
 	# Check we can write to the option file (if we want to)
