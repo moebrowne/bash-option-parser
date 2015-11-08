@@ -107,6 +107,9 @@ optWrite() {
 		exit 1;
 	fi
 
+	# Update the array
+	opts["$1"]="$2"
+
 	# Check if this is a new option
 	if [ ! -z ${optLines["$1"]+abc} ]; then
 
@@ -123,9 +126,6 @@ optWrite() {
 		# Add the new option to the end of the option file
 		echo "$1=$2" >> "$OPT_FILE"
 	fi
-
-	# Update the array
-	opts["$1"]="$2"
 }
 
 # If we are accessing this script directly run the argument parser, useful for testing
