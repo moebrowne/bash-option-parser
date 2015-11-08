@@ -15,7 +15,6 @@ regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*
 # Initialise some variables
 declare -A opts
 
-
 optParse() {
 
 	# Set the line counter to 0
@@ -29,8 +28,8 @@ optParse() {
 
 		# Try and match the line against our REGEX
 		[[ $line =~ $regexOption ]]
-
 		if [[ ${BASH_REMATCH[@]} == '' ]]; then
+			# Nothing matched the regex
 			continue
 		fi
 
@@ -38,6 +37,7 @@ optParse() {
 		key="${BASH_REMATCH[1]}"
 		value="${BASH_REMATCH[2]}"
 
+		# Add the value to the associative array
 		opts["$key"]="$value"
 
 	done < "$OPT_FILE"
