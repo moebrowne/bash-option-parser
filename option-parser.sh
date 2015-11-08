@@ -25,7 +25,7 @@ optExists() {
 }
 
 optValue() {
-	if argExists "$1"; then
+	if optExists "$1"; then
 		echo "${opts["$1"]}"
 	fi
 }
