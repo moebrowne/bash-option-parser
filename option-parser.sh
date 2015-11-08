@@ -10,7 +10,7 @@ OPT_COMMENT="#"
 regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*)$"
 
 # Initialise some variables
-declare -A opta
+declare -A opts
 
 
 optParse() {
