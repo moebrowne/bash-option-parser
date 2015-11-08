@@ -47,6 +47,6 @@ if [ "$0" == "$BASH_SOURCE" ]; then
 
 	for k in "${!opts[@]}"
 	do
-		echo "ARG: $k = ${opts[$k]}"
+		echo "OPT: $k = ${opts[$k]}"
 	done
 fi
