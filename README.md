@@ -16,11 +16,11 @@ The character(s) that denote the start of a comment line. Defaults to `#`
 
 ### `OPT_FILE_CREATE_IF_MISSING`
 
-Whether the option file should be created if when we try and write to the option file it does not exist
+Whether the option file should be created if when we try and write to the option file it does not exist. Defaults to `true`
 
 ### `OPT_PERSIST_CHANGES`
 
-Whether requests to change or add options are made the changes should be committed to the option file.
+Whether requests to change or add options are made the changes should be committed to the option file. Defaults to `true`
 
 ## Option File Format
 
