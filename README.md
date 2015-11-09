@@ -18,6 +18,10 @@ The character(s) that denote the start of a comment line. Defaults to `#`
 
 Whether the option file should be created if when we try and write to the option file it does not exist
 
+### OPT_PERSIST_CHANGES
+
+Whether requests to change or add options are made the changes should be committed to the option file.
+
 ## Option File Format
 
 The options are stored in the following format:
