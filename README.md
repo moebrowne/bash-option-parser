@@ -4,7 +4,7 @@ A simple library that handles the storage and retrieval of simple text options f
 
 ## Configuration
 
-There are a couple of configuration options the parser can be passed:
+There are a couple of configuration options that the parser uses, they must be defined before it is run:
 
 ### `OPT_FILE`
 
