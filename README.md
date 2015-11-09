@@ -10,6 +10,10 @@ There are a couple of configuration options the parser can be passed:
 
 The path to the file in which you want the options to be stored
 
+### OPT_COMMENT
+
+The character(s) that denote the start of a comment line. Defaults to `#`
+
 ## Option File Format
 
 The options are stored in the following format:
