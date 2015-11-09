@@ -14,6 +14,10 @@ The path to the file in which you want the options to be stored
 
 The character(s) that denote the start of a comment line. Defaults to `#`
 
+### OPT_FILE_CREATE_IF_MISSING
+
+Whether the option file should be created if when we try and write to the option file it does not exist
+
 ## Option File Format
 
 The options are stored in the following format:
