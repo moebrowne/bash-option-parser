@@ -10,6 +10,9 @@ There are a couple of configuration options that the parser uses, they must be d
 
 ```shell
 
+# Include the library
+. /path/to/option-parser.sh
+
 # Set any config variables you need
 OPT_FILE="$HOME/.my_config"
 OPT_COMMENT="#"
