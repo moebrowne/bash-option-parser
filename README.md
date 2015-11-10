@@ -6,6 +6,27 @@ A simple library that handles the storage and retrieval of simple text options f
 
 There are a couple of configuration options that the parser uses, they must be defined before it is run:
 
+## Use
+
+```shell
+
+# Set any config variables you need
+OPT_FILE="$HOME/.my_config"
+OPT_COMMENT="#"
+OPT_FILE_CREATE_IF_MISSING=true
+OPT_PERSIST_CHANGES=true
+
+# Call the parser
+optParser
+
+# Get an option
+optionValue=$(optValue "MyOptionName")
+
+# Set an option
+optWrite "MyOptionName" "Testing"
+
+```
+
 ### `OPT_FILE`
 
 The path to the file in which you want the options to be stored
