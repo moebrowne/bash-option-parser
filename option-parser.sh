@@ -13,7 +13,7 @@ OPT_PERSIST_CHANGES=true
 OPT_FILE_CREATE_IF_MISSING=true
 
 # Debug mode
-OPT_DEBUG=true
+OPT_DEBUG=false
 
 # Define the regex to match an option
 regexOption="^[:space:]*([^=[:space:]$OPT_COMMENT]+)[[:space:]]*=[[:space:]]*(.*)$"
